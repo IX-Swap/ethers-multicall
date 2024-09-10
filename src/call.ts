@@ -9,16 +9,19 @@ export async function all<T extends any[] = any[]>(
   calls: ContractCall[],
   multicallAddress: string,
   provider: Provider,
+  blockTag?: number | string
 ): Promise<T> {
   const multicall = new Contract(multicallAddress, multicallAbi, provider);
-  const callRequests = calls.map(call => {
+  const callRequests = calls.map((call) => {
     const callData = Abi.encode(call.name, call.inputs, call.params);
     return {
       target: call.contract.address,
       callData,
     };
   });
-  const response = await multicall.aggregate(callRequests);
+  const response = await multicall.aggregate(callRequests, {
+    blockTag: blockTag || 'latest',
+  });
   const callCount = calls.length;
   const callResult = [] as T;
   for (let i = 0; i < callCount; i++) {
