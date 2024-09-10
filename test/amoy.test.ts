@@ -1,8 +1,8 @@
-import { ethers } from 'ethers';
 import { assert } from 'chai';
+import { ethers } from 'ethers';
 import { Contract, Provider } from '../src';
 
-const rpcUrl = 'https://polygon-amoy.drpc.org'
+const rpcUrl = 'https://polygon-amoy.drpc.org';
 const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
 const ethcallProvider = new Provider(provider, 80002);
 
@@ -22,5 +22,5 @@ describe('amoy network', () => {
 
         assert.equal(linkSupply.toString(), '10001000000000000000000000');
         assert.equal(usdcSupply.toString(), '100000000000000000000000000');
-    })
-})
+    });
+});
