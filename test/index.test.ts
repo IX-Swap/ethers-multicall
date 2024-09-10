@@ -54,5 +54,5 @@ describe('ethereum network', () => {
 
     assert.equal(yfiSupply.toString(), '36666000000000000000000');
     assert.equal(uniSupply.toString(), '1000000000000000000000000000');
-  })
-})
+  });
+});
